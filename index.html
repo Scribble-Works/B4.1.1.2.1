@@ -78,6 +78,15 @@
                 justify-content: center;
                 align-items: center;
             }
+
+            #game-wrapper:fullscreen .screen,
+            #game-wrapper:-webkit-full-screen .screen,
+            #game-wrapper:-ms-fullscreen .screen {
+                width: 100vw;
+                height: 100vh;
+                max-width: none;
+                border-radius: 0;
+            }
     </style>
 </head>
 <body>
