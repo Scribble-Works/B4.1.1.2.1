@@ -18,7 +18,7 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: #0a192f; min-height: 100vh; display: flex; justify-content: center; align-items: center; color: var(--text-main); overflow: hidden; }
+        body { font-family: 'Inter', sans-serif; background: #0a192f; min-height: 100vh; display: flex; justify-content: center; align-items: center; color: var(--text-main); overflow-x: hidden; }
 
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
@@ -54,6 +54,30 @@
         .lvl-dot { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; font-weight: 900; cursor: pointer; }
         .lvl-dot.active-lvl { border-color: var(--mathly-yellow); color: var(--mathly-yellow); }
         .lvl-dot.locked { opacity: 0.2; cursor: not-allowed; }
+
+        #game-wrapper:fullscreen {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #game-wrapper:-webkit-full-screen {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #game-wrapper:-ms-fullscreen {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
     </style>
 </head>
 <body>
