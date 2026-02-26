@@ -230,25 +230,18 @@
             saveGame();
         }
         function toggleFullscreen() {
+        const elem = document.getElementById("game-wrapper");
 
-                const gameWrapper = document.getElementById("game-wrapper");
-
-                if (!document.fullscreenElement) {
-
-                    if (gameWrapper.requestFullscreen) {
-                        gameWrapper.requestFullscreen();
-                    } else if (gameWrapper.webkitRequestFullscreen) {
-                        gameWrapper.webkitRequestFullscreen();
-                    } else if (gameWrapper.msRequestFullscreen) {
-                        gameWrapper.msRequestFullscreen();
-                    }
-
-                } else {
-                    if (document.exitFullscreen) {
-                        document.exitFullscreen();
-                    }
-                }
-            }
+        if (!document.fullscreenElement) {
+            elem.requestFullscreen()
+            .then(() => console.log("Game fullscreen started"))
+            .catch(err => console.error("Fullscreen failed:", err));
+        } else {
+            document.exitFullscreen()
+            .then(() => console.log("Exited fullscreen"))
+            .catch(err => console.error("Exit failed:", err));
+        }
+        }
         function toggleModal(show) { document.getElementById('rules-modal').style.display = show ? 'flex' : 'none'; }
         function showScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); if(id === 'screen-game') updateMap(); }
 
