@@ -18,12 +18,12 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Inter', sans-serif; background: #0a192f; min-height: 100vh; display: flex; justify-content: center; align-items: center; color: var(--text-main); overflow-x: hidden; }
+        body { font-family: 'Inter', sans-serif; background: #0a192f; min-height: 100vh; display: flex; justify-content: center; align-items: center; color: var(--text-main); overflow: hidden; }
 
         #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 
         .screen { 
-            width: 95%; max-width: 550px; max-height: 95%; overflow: hidden; background: var(--glass-bg); backdrop-filter: blur(25px); 
+            display: none; width: 95%; max-width: 550px; background: var(--glass-bg); backdrop-filter: blur(25px); 
             border: 1px solid var(--glass-border); border-radius: 40px; padding: 40px; text-align: center; 
             z-index: 2; position: relative; box-shadow: 0 25px 60px rgba(0,0,0,0.8); 
         }
@@ -54,28 +54,9 @@
         .lvl-dot { width: 40px; height: 40px; border-radius: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center; font-weight: 900; cursor: pointer; }
         .lvl-dot.active-lvl { border-color: var(--mathly-yellow); color: var(--mathly-yellow); }
         .lvl-dot.locked { opacity: 0.2; cursor: not-allowed; }
-
-        html, body {
-                height: 100%;
-            }
-
-            body {
-                background: #0a192f;
-                overflow: hidden; /* prevents scrolling */
-            }
-
-            #game-wrapper {
-                width: 100%;
-                height: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
     </style>
 </head>
 <body>
-
-    <div id="game-wrapper">
 
     <canvas id="bg-canvas"></canvas>
 
@@ -215,17 +196,8 @@
             saveGame();
         }
         function toggleFullscreen() {
-        const elem = document.getElementById("game-wrapper");
-
-        if (!document.fullscreenElement) {
-            elem.requestFullscreen()
-            .then(() => console.log("Game fullscreen started"))
-            .catch(err => console.error("Fullscreen failed:", err));
-        } else {
-            document.exitFullscreen()
-            .then(() => console.log("Exited fullscreen"))
-            .catch(err => console.error("Exit failed:", err));
-        }
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+            else document.exitFullscreen();
         }
         function toggleModal(show) { document.getElementById('rules-modal').style.display = show ? 'flex' : 'none'; }
         function showScreen(id) { document.querySelectorAll('.screen').forEach(s => s.classList.remove('active')); document.getElementById(id).classList.add('active'); if(id === 'screen-game') updateMap(); }
